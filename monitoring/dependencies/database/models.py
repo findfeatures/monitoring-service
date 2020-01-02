@@ -11,6 +11,10 @@ class IDMixin:
     id = Column(Integer, primary_key=True, nullable=False)
 
 
+class RedisMessageIDMixin:
+    redis_message_id = Column(Text, nullable=False)
+
+
 class CreatedTimestampMixin:
     created_datetime_utc = Column(
         DateTime, nullable=False, server_default=text("(now() at time zone 'utc')")
@@ -20,7 +24,7 @@ class CreatedTimestampMixin:
 """SQLAlchemy Models"""
 
 
-class ApiRequest(IDMixin, CreatedTimestampMixin, Base):
+class ApiRequest(IDMixin, RedisMessageIDMixin, CreatedTimestampMixin, Base):
 
     __tablename__ = "api_requests"
 
@@ -30,4 +34,3 @@ class ApiRequest(IDMixin, CreatedTimestampMixin, Base):
     status = Column(Text, nullable=True)
     status_code = Column(Integer, nullable=True)
     remote_addr = Column(Text, nullable=True)
-

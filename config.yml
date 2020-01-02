@@ -8,3 +8,5 @@ DB_URIS:
   "monitoring:Base": ${DB_URI:postgresql://${DB_USER:postgres}:${DB_PASSWORD:password}@${DB_SERVER:localhost}/${DB_NAME:monitoring}}
 
 WEB_SERVER_ADDRESS: ${SERVER_ADDRESS:0.0.0.0}:${SERVER_PORT:8003}
+
+REDIS_URL: redis://${REDIS_SERVER:127.0.0.1}:${REDIS_PORT:6379}/${REDIS_DB:0}
