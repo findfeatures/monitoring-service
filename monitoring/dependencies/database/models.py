@@ -24,8 +24,10 @@ class ApiRequest(IDMixin, CreatedTimestampMixin, Base):
 
     __tablename__ = "api_requests"
 
-    url = Column(Text, nullable=False)
-    method = Column(Text, nullable=False)
-    status = Column(Text, nullable=False)
-    status_code = Column(Integer, nullable=False)
-    remote_addr = Column(Text, nullable=False)
+    url = Column(Text, nullable=True)
+    method = Column(Text, nullable=True)
+    duration = Column(Text, nullable=False)
+    status = Column(Text, nullable=True)
+    status_code = Column(Integer, nullable=True)
+    remote_addr = Column(Text, nullable=True)
+

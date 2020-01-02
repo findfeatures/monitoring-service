@@ -1,7 +1,5 @@
 from ddtrace import Pin
-from monitoring.dependencies.database.collections.projects import Projects
-from monitoring.dependencies.database.collections.user_tokens import UserTokens
-from monitoring.dependencies.database.collections.users import Users
+from monitoring.dependencies.database.collections.api_requests import ApiRequests
 from monitoring.dependencies.database.models import Base
 from nameko import config
 from nameko_sqlalchemy import Database
@@ -18,11 +16,11 @@ class StorageWrapper:
             setattr(self, collection.name, collection(self.db))
 
     def health_check(self):
-        self.db.session.execute("SELECT 1 FROM users LIMIT 1")
+        self.db.session.execute("SELECT 1 FROM api_requests LIMIT 1")
 
 
 class Storage(Database):
-    collections = [Users, UserTokens, Projects]
+    collections = [ApiRequests]
 
     def __init__(self):
         engine_options = {
@@ -36,7 +34,7 @@ class Storage(Database):
 
     def setup(self):
         super().setup()
-        Pin.override(self.engine, service="users-service")
+        Pin.override(self.engine, service="monitoring-service")
 
     def get_dependency(self, worker_ctx):
         db = super().get_dependency(worker_ctx)
