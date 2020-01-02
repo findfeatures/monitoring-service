@@ -38,6 +38,15 @@ def db(postgresql_db):
         yield postgresql_db
 
 
+# @pytest.yield_fixture()
+# def redis_session(web_config_port):
+#     import walrus
+#
+#     db = walrus.Database().from_url('redis://127.0.0.1:6379/0')
+#
+#     yield db
+
+
 @pytest.fixture
 def create_service(container_factory):
     def create(service_cls, *dependencies, **dependency_map):

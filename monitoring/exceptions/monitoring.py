@@ -1,0 +1,2 @@
+class UnrecognizedMonitorName(Exception):
+    pass

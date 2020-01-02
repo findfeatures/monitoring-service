@@ -11,7 +11,7 @@ static:
 	pre-commit run --all-files
 
 coverage:
-	coverage run --concurrency=eventlet --source monitor --branch -m pytest --alluredir=$(ALLURE_DIR) tests$(ARGS)
+	coverage run --concurrency=eventlet --source monitoring --branch -m pytest --alluredir=$(ALLURE_DIR) tests$(ARGS)
 	coverage html -d $(COVERAGE_DIR)
 
 check-coverage:
