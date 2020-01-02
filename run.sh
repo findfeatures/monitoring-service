@@ -4,4 +4,4 @@
 alembic upgrade head
 
 # Run Service
-nameko run --config config.yml monitoring.service
+nameko run --config config.yml monitoring.service:MonitoringService
