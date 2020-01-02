@@ -17,7 +17,7 @@ def test_create_user_successful(config, db, runner_factory):
     with entrypoint_hook(
         container, "consume_monitoring_stream"
     ) as consume_monitoring_stream:
-        result = consume_monitoring_stream(
+        consume_monitoring_stream(
             "123",
             {
                 "__MONITOR_NAME": "API_REQUEST",
@@ -38,7 +38,6 @@ def test_create_user_successful(config, db, runner_factory):
 def test_raises_if_message_unrecognised(config, db, runner_factory):
     runner = runner_factory(MonitoringService)
     container = get_container(runner, MonitoringService)
-    storage = replace_dependencies(container, "storage")
     runner.start()
 
     with entrypoint_hook(
